@@ -1,0 +1,3 @@
+[submodule "app/vendor/php-simple-dbi"]
+	path = app/vendor/php-simple-dbi
+	url = https://github.com/ttsuruoka/php-simple-dbi
