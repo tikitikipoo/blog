@@ -1,0 +1,58 @@
+
+必要なもの
+ディスパッチ
+dispatch.php
+オートローダー
+splclassloader
+コンフィグ
+config.php
+リクエスト
+request.php
+レスポンス
+response.php
+ルーター
+router.php
+コントローラー
+controller.php
+ビュー
+view.php
+モデル
+model.php
+データベース
+database.php
+例外
+execption.php
+セッション
+session.php
+クッキー
+cookie.php
+バリデーション
+validator.php
+フォームヘルパー
+form.php
+ページネーション
+pagination.php
+キャッシュ
+cache.php
+ログ
+log.php
+
+
+index.php
+
+bootstrap.php
+
+cypher.php
+
+
+
+フォルダ構成
+app
+    config
+    controller
+    helper
+    model
+    views
+    webroot
+
+cypher
