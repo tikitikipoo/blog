@@ -12,12 +12,12 @@ if (!defined('DS')) {
 }
 
 if (!defined('ROOT_DIR')) {
-    define('ROOT_DIR', dirname(dirname(__FILE__)));
+    define('ROOT_DIR', dirname(dirname(__FILE__)) . DS);
 }
 
 
 if (!defined('APP_DIR')) {
-    define('APP_DIR', ROOT_DIR . DS . 'app' . DS);
+    define('APP_DIR', ROOT_DIR . 'app' . DS);
 }
 
 define('CY_DIR', ROOT_DIR . DS . 'cypher' . DS);
@@ -30,7 +30,7 @@ require CY_DIR . 'SplClassLoader.php';
 
 $ClassLoader = new cypher\SplClassLoader(
     array(
-        ROOT_DIR . DS,
+        ROOT_DIR,
         CY_DIR,
         CONTROLLER_DIR,
         MODEL_DIR,
@@ -38,8 +38,3 @@ $ClassLoader = new cypher\SplClassLoader(
     )
 );
 $ClassLoader->register();
-
-// coreの設定
-\cypher\Config::write(array('CYPHER', '1'));
-
-

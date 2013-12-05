@@ -14,8 +14,6 @@ use cypher\Response;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase {
 
-    $this->response;
-
     public function setUp()
     {
         parent::setUp();
@@ -25,7 +23,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase {
 
     public function tearDown()
     {
-        unset($this->Response)
+        unset($this->Response);
         parent::tearDown();
     }
 

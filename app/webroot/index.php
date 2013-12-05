@@ -24,11 +24,11 @@ if (!defined('DS')) {
 }
 
 if (!defined('ROOT_DIR')) {
-    define('ROOT_DIR', dirname(dirname(dirname(__FILE__))));
+    define('ROOT_DIR', dirname(dirname(dirname(__FILE__))) . DS);
 }
 
 if (!defined('APP_DIR')) {
-    define('APP_DIR', ROOT_DIR . DS . 'app' . DS);
+    define('APP_DIR', ROOT_DIR . 'app' . DS);
 }
 
 if (!include (ROOT_DIR . DS . 'cypher' .DS . 'bootstrap.php')) {
