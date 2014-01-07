@@ -23,6 +23,7 @@ if (!defined('APP_DIR')) {
 define('CY_DIR', ROOT_DIR . DS . 'cypher' . DS);
 define('CONTROLLER_DIR', APP_DIR . 'controller' . DS);
 define('MODEL_DIR', APP_DIR . 'model' . DS);
+define('VIEW_DIR', APP_DIR . 'view' . DS);
 define('LIB_DIR', APP_DIR . 'lib' . DS);
 
 // autoload

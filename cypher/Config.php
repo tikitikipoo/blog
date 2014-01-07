@@ -9,7 +9,6 @@
 
 namespace cypher;
 
-
 class Config {
 
     public static $_values;

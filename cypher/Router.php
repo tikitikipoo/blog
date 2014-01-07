@@ -58,7 +58,7 @@ class Router {
                 unset($params[0]);
                 $params = array_merge($params);
                 return $params;
-            } 
+            }
         }
 
         // 指定したルーティング以外の処理
@@ -82,7 +82,6 @@ class Router {
             $params = array_merge($params);
             return $params;
         }
-
 
         return false;
     }

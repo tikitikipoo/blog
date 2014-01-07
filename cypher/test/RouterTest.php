@@ -10,11 +10,10 @@
 namespace cypher\test;
 
 require_once dirname(__DIR__).'/bootstrap.php';
+require_once dirname(__FILE__).'/bootstrap.php';
 
 use cypher\Config;
 use cypher\Router;
-
-require __DIR__ . DIRECTORY_SEPARATOR  . 'config' . DIRECTORY_SEPARATOR .'config.php';
 
 class RouterTest extends \PHPUnit_Framework_TestCase {
 
@@ -65,6 +64,13 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             '0' => 10
          );
         $this->assertEquals($expected, $result, '/articles/edit/10のルーティングが正しく動作すること');
+
+        $result = $Router->resolve('/');
+        $expected = array(
+            'controller' => 'top',
+            'action' => 'index',
+         );
+        $this->assertEquals($expected, $result, '/のルーティングが正しく動作すること');
 
     }
 }

@@ -8,6 +8,9 @@ use cypher\Model;
 class ModelTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * @test
+     */
     public function test_validate()
     {
         $data = array('Player' => array('name' => ''));

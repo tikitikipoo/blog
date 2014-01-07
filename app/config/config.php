@@ -17,12 +17,3 @@ Config::write(
         'password' => '',
     )
 );
-
-Config::write(
-    'routes',
-    array(
-        '/' => array('controller' => ''),
-        '/:controller' => array('action' => 'index'),
-        '/posts/view/:id' => array('controller' => 'posts', 'action' => 'view'),
-    )
-);

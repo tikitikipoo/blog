@@ -8,10 +8,9 @@
  */
 
 
-class TopController {
+class TopController extends Controller {
 
     public function index()
     {
-        echo "aaa";
     }
 }
