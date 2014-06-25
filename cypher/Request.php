@@ -129,7 +129,7 @@ class Request {
     public function getBaseUrl($https = false)
     {
         $url = $https ? 'https://' : 'http://';
-        return $url . $this->getHost() . DS ;
+        return $url . $this->getHost();
     }
 
     public function getBasePath()

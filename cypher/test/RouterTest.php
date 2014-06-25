@@ -9,8 +9,8 @@
 
 namespace cypher\test;
 
-require_once dirname(__DIR__).'/bootstrap.php';
 require_once dirname(__FILE__).'/bootstrap.php';
+require_once CONFIG_DIR. 'config.php';
 
 use cypher\Config;
 use cypher\Router;
@@ -34,7 +34,6 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             'controller' => 'posts',
             'action' => 'view',
             'id' => '10',
-            '0' => '10'
         );
         $this->assertEquals($expected, $result, '/posts/view/:idのルーティングが正しく動作すること');
 

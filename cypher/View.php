@@ -1,4 +1,5 @@
 <?php
+namespace cypher;
 
 class View
 {
@@ -25,7 +26,7 @@ class View
 
     public function render($_view, $_layout = false, $variables = array())
     {
-        $_file = $this->view_dir . DS . $_view . '.php';
+        $_file = $this->view_dir . $_view . '.php';
 
         $_variables = array_merge($this->defaults, $this->variables);
         $_variables = array_merge($_variables, $variables);

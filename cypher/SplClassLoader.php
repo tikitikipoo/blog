@@ -69,7 +69,7 @@ class SplClassLoader {
         foreach ($this->dir as $dir) {
             //var_dump($dir . $fileName);
             if (file_exists($dir . $fileName)) {
-                require $dir . $fileName;
+                require_once $dir . $fileName;
             }
         }
     }

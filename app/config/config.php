@@ -11,9 +11,13 @@
 use cypher\Config;
 
 Config::write(
-    'detabase',
+    'database_default',
     array(
-        'user' => 'pgadmin',
-        'password' => '',
+        'host'     => 'localhost',
+        'dbname'   => 'cypher_blog_dev',
+        'dsn'      => 'mysql:host=localhost;dbname=cypher_blog_dev',
+        'user'     => 'root',
+        'password' => 'localhost',
+        'timeout'  => '3'
     )
 );

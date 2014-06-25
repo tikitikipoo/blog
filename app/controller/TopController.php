@@ -7,10 +7,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-
-class TopController extends Controller {
+class TopController extends AppController
+{
 
     public function index()
     {
+        $res = StatusModel::getAll();
+        var_dump($res);
     }
 }

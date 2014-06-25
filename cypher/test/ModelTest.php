@@ -1,8 +1,6 @@
 <?php
 namespace cypher\test;
 
-require_once dirname(__DIR__).'/bootstrap.php';
-
 use cypher\Model;
 
 class ModelTest extends \PHPUnit_Framework_TestCase

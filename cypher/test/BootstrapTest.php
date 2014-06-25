@@ -9,7 +9,7 @@
 
 namespace cypher\test;
 
-require_once dirname(dirname(__FILE__)).'/bootstrap.php';
+//require_once dirname(__FILE__).'/bootstrap.php';
 
 class BootstrapTest extends \PHPUnit_Framework_TestCase {
 

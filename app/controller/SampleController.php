@@ -1,10 +1,11 @@
 <?php
 
-class SampleController
+class SampleController extends AppController
 {
 
     public function index()
     {
+        echo "sample index";
 
     }
 }

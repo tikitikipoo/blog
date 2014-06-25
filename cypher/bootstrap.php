@@ -6,7 +6,6 @@
  * Time: 23:31
  * To change this template use File | Settings | File Templates.
  */
-
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
@@ -25,6 +24,8 @@ define('CONTROLLER_DIR', APP_DIR . 'controller' . DS);
 define('MODEL_DIR', APP_DIR . 'model' . DS);
 define('VIEW_DIR', APP_DIR . 'view' . DS);
 define('LIB_DIR', APP_DIR . 'lib' . DS);
+define('VENDOR_DIR', APP_DIR . 'vendor' . DS);
+define('CONFIG_DIR', APP_DIR . 'config' . DS);
 
 // autoload
 require CY_DIR . 'SplClassLoader.php';

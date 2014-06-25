@@ -1,4 +1,5 @@
 <?php
+namespace cypher;
 
 class Controller
 {
@@ -68,11 +69,27 @@ class Controller
 
     public function forward404()
     {
+        throw new \Cypher\HttpNotFoundException('Forward 404 page');
     }
 
-    public function redirect()
+    /**
+     * Redirects the current url to another url
+     */
+    public function redirect($url, $code = 303)
     {
+        if (!preg_match('#https?://#', $url)) {
+            $protocol = $this->request->isHTTPS() ? 'https://' : 'http://';
+            $host = $this->request->getHost();
+            $base_url = $this->request->getBaseUrl();
 
+            $url = $protocol . $host . $base_url . $url;
+        }
+
+        $this->response
+            ->status($code)
+            ->header('Location', $url)
+            ->write($url)
+            ->send();
     }
 
     public function set($index, $value)

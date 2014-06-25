@@ -76,7 +76,7 @@ class Response {
      * @return object Self refrence
      * throws \Exception if invalid status code
      */
-    public function setStatusCode($code)
+    public function status($code)
     {
         if (array_key_exists($code, self::$codes)) {
             $this->status = $code;
@@ -87,6 +87,11 @@ class Response {
         return $this;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
 
     /**
      * Adds a header to the reponse
@@ -95,7 +100,7 @@ class Response {
      * @param string $value Header value
      * @return object Self reference
      */
-    public function setHeader($name, $value = null)
+    public function header($name, $value = null)
     {
         if (is_array($name)) {
 
@@ -105,6 +110,8 @@ class Response {
         } else {
             $this->headers[$name] = $value;
         }
+
+        return $this;
     }
 
     /**

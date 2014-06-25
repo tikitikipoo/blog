@@ -9,9 +9,7 @@
 
 namespace cypher\test;
 
-require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Config.php';
 use cypher\Config;
-
 
 class ConfigTest extends \PHPUnit_Framework_TestCase {
 

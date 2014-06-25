@@ -12,10 +12,12 @@ namespace cypher;
 class Router {
 
     private $routes;
+    private $prefix;
 
-    public function __construct($definitions)
+    public function __construct($definitions, $prefix = null)
     {
         $this->routes = $this->compileRoutes($definitions);
+        $this->prefix = $prefix;
     }
 
     public function compileRoutes($definitions)
@@ -32,6 +34,7 @@ class Router {
                 $tokens[$i] = $token;
             }
 
+            $params['token_count'] = count($tokens);
             $pattern = '/' . implode('/', $tokens);
             $routes[$pattern] = $params;
         }
@@ -55,8 +58,17 @@ class Router {
 
             if (preg_match('#^' . $pattern . '$#', $pathInfo, $matches)) {
                 $params = array_merge($params, $matches);
-                unset($params[0]);
+                if (isset($params['token_count'])) {
+                    for ($i = 0; $i < $params['token_count']; $i++) {
+                        unset($params[$i]);
+                    }
+                    unset($params['token_count']);
+                }
                 $params = array_merge($params);
+
+                if (isset($params['prefix'])) {
+                    $params['action'] = $params['prefix'] . '_' . $params['action'];
+                }
                 return $params;
             }
         }
@@ -65,6 +77,17 @@ class Router {
         $urlInfo = explode('/', ltrim($pathInfo, '/'));
 
         if (isset($urlInfo[0]) && isset($urlInfo[1])) {
+
+            if ($urlInfo[0] == $this->prefix) {
+                $urlInfo[0] = $urlInfo[1];
+                if (isset($urlInfo[2])) {
+                    $urlInfo[1] = $this->prefix . '_' . $urlInfo[2];
+                    unset($urlInfo[2]);
+                } else {
+                    $urlInfo[1] = $this->prefix . '_' . 'index';
+                }
+            }
+
             $params = $urlInfo;
             $params['controller'] = $urlInfo[0];
             $params['action']     = $urlInfo[1];

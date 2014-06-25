@@ -54,7 +54,10 @@ class Dispatcher {
         $this->Request  = is_null($this->settings['request']) ? new Request() : $this->settings['request'];
         $this->Response = is_null($this->settings['response']) ? new Response() : $this->settings['response'];
         $this->Session  = is_null($this->settings['session']) ? new Session(): $this->settings['session'];
-        $this->Router   = new Router($this->registerRoutes());
+        $this->Router   = new Router(
+            $this->registerRoutes(),
+            'admin'
+        );
     }
 
     /**
@@ -65,6 +68,7 @@ class Dispatcher {
         try {
 
             $params = $this->Router->resolve($this->Request->getRequestPath());
+            var_dump($params);
 
             $controller = $params['controller'];
             $action     = $params['action'];
@@ -138,11 +142,6 @@ class Dispatcher {
             self::$view_dir = $view_dir;
         }
     }
-
-    public function run()
-    {
-    }
-
 
     /**
      * 実際にアクションを実行する

@@ -27,4 +27,15 @@ class ResponseTest extends \PHPUnit_Framework_TestCase {
         parent::tearDown();
     }
 
+    /**
+     * @test
+     */
+    public function test_status()
+    {
+
+        $this->Response->status(303);
+
+        $this->assertEquals($this->Response->getStatus(), 303, 'ステータスコードが一致していること');
+    }
+
 }

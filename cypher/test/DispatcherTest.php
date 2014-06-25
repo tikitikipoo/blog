@@ -1,9 +1,6 @@
 <?php
 namespace cypher\test;
 
-require_once dirname(__DIR__).'/bootstrap.php';
-require_once dirname(__FILE__).'/bootstrap.php';
-
 use cypher\Model;
 
 class DispatcherTest extends \PHPUnit_Framework_TestCase
@@ -20,6 +17,7 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
+        unset($this->Dispatcher);
         parent::tearDown();
     }
 
@@ -28,7 +26,7 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
      */
     public function test_findController()
     {
-        $Sample = \cypher\Dispatcher::findController('SampleController');
+//        $Sample = \cypher\Dispatcher::findController('SampleController');
 
     }
 }
