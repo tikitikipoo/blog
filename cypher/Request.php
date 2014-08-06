@@ -61,7 +61,7 @@ class Request {
 
     public function isPost()
     {
-        return ($this->gerServer('REQUEST_METHOD') === 'POST');
+        return ($this->getServer('REQUEST_METHOD') === 'POST');
     }
 
     public function isXMLHTTPRequest()
@@ -81,7 +81,7 @@ class Request {
 
     public function getGet($index = null, $default = null)
     {
-        if ($index = null) {
+        if (is_null($index)) {
             return $this->get;
         }
 
@@ -93,7 +93,7 @@ class Request {
 
     public function getPost($index = null, $default = null)
     {
-        if ($index = null) {
+        if (is_null($index)) {
             return $this->post;
         }
 

@@ -7,12 +7,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class TopController extends AppController
+class TopController extends FrontAppController
 {
 
     public function index()
     {
-        $res = StatusModel::getAll();
-        var_dump($res);
+		$posts = PostModel::getAll();
+
+		$this->set('posts', $posts);
     }
 }

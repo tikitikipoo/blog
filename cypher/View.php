@@ -5,6 +5,7 @@ class View
 {
     protected $view_dir;
     protected $defaults;
+    protected $helpers;
     protected $variables = array();
 
     public function __construct($view_dir, $defaults)
@@ -24,12 +25,29 @@ class View
         }
     }
 
+    public function getVariables($name)
+    {
+        if (isset($this->variables[$name])) {
+            return $this->variables[$name];
+        }
+        return null;
+    }
+
+    public function get($name)
+    {
+        return $this->getVariables($name);
+    }
+
+    public function setHelpers($helpers)
+    {
+        $thi->helpers = $helpers;
+    }
+
     public function render($_view, $_layout = false, $variables = array())
     {
         $_file = $this->view_dir . $_view . '.php';
 
-        $_variables = array_merge($this->defaults, $this->variables);
-        $_variables = array_merge($_variables, $variables);
+        $_variables = array_merge($this->defaults, $variables);
         extract($_variables);
 
         ob_start();
@@ -44,5 +62,39 @@ class View
 
         }
         return $content;
+    }
+
+    public function partial($view, $variable = array())
+    {
+        $_file = $this->view_dir . $view . '.php';
+        require $_file;
+    }
+
+    public function includeHelper()
+    {
+        $dir  = $this->view_dir . 'helper' . DS;
+
+        if (empty($this->helpers)) {
+            return;
+        }
+
+        foreach($this->helpers as $helper) {
+            $file = $dir . ucfirst($helper) . 'Helper.php';
+
+            if (is_file($file)) {
+                require_once $file;
+            }
+        }
+    }
+
+    /**
+     * 指定された値をHTMLエスケープする
+     *
+     * @param string $string
+     * @return string
+     */
+    public function escape($string)
+    {
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
     }
 }

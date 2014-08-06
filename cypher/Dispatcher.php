@@ -68,7 +68,6 @@ class Dispatcher {
         try {
 
             $params = $this->Router->resolve($this->Request->getRequestPath());
-            var_dump($params);
 
             $controller = $params['controller'];
             $action     = $params['action'];
@@ -148,19 +147,31 @@ class Dispatcher {
      */
     public function runAction($controller_name, $action, $params = array())
     {
-        $controller_class = ucfirst($controller_name) . 'Controller';
+        $controller_class = (isset($params['admin']) && $params['admin'] == true)
+            ? 'Admin' . ucfirst($controller_name) . 'Controller'
+            : ucfirst($controller_name) . 'Controller';
 
         $controller = $this->findController($controller_class);
         if (!$controller) {
             throw new HttpNotFoundException($controller_class . ' controller is not found.');
         }
 
+        $controller->setActionName($action);
+
+        $controller->beforeFilter();
+
+        $controller->afterFilter();
+
         $content = $controller->run($action, $params);
         if (!$content) {
             $content = $controller->render();
         }
 
+        $controller->beforeRender();
+
         $this->Response->write($content);
+
+        $controller->afterRender();
     }
 
     /**

@@ -72,6 +72,13 @@ class Model
         }
     }
 
+    public function __get($name)
+    {
+        if (isset($this->_data[$name])) {
+            return $this->_data[$name];
+        }
+    }
+
     public function setValidator(Validator $validator)
     {
         $this->_validator = $validator;
@@ -97,7 +104,6 @@ class Model
     {
         return $this->_data;
     }
-
 
     public function validate() {
 

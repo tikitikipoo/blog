@@ -10,6 +10,7 @@ class Controller
     protected $response;
     protected $session;
     protected $variables;
+    protected $layouts;
 
     public function __construct($dispatcher)
     {
@@ -20,12 +21,11 @@ class Controller
         $this->response    = $dispatcher->getResponse();
         $this->session     = $dispatcher->getSession();
 
-        $this->varibales = array();
+        $this->varibales = [];
     }
 
     public function run($action, $param)
     {
-        $this->action_name = $action;
         if (!method_exists($this, $action)) {
             $this->forward404();
         }
@@ -33,7 +33,7 @@ class Controller
         return $this->$action($param);
     }
 
-    public function render($template = null, $layout = 'layouts/layout')
+    public function render($template = null, $layout = null)
     {
         $defaults = array(
             'request'  => $this->request,
@@ -51,6 +51,10 @@ class Controller
 
         $view->setVariables($this->variables);
 
+        if (is_null($layout)) {
+            $layout = $this->layout;
+        }
+
         return $view->render($path, $layout);
 
     }
@@ -67,6 +71,10 @@ class Controller
     {
     }
 
+    public function afterRender()
+    {
+    }
+
     public function forward404()
     {
         throw new \Cypher\HttpNotFoundException('Forward 404 page');
@@ -78,11 +86,10 @@ class Controller
     public function redirect($url, $code = 303)
     {
         if (!preg_match('#https?://#', $url)) {
-            $protocol = $this->request->isHTTPS() ? 'https://' : 'http://';
-            $host = $this->request->getHost();
-            $base_url = $this->request->getBaseUrl();
-
-            $url = $protocol . $host . $base_url . $url;
+            if (strpos($url, '/') != 0) {
+                $url = '/' . $url;
+            }
+            $url = $this->request->getBaseUrl() . $url;
         }
 
         $this->response
@@ -90,10 +97,16 @@ class Controller
             ->header('Location', $url)
             ->write($url)
             ->send();
+        exit;
     }
 
     public function set($index, $value)
     {
         $this->variables[$index] = $value;
+    }
+
+    public function setActionName($name)
+    {
+        $this->action_name = $name;
     }
 }

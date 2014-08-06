@@ -21,3 +21,5 @@ Config::write(
         'timeout'  => '3'
     )
 );
+
+Config::write('salt' , '1234567890');
